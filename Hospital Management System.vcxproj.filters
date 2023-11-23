@@ -24,13 +24,19 @@
     <ClCompile Include="Patient.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ManagementSystem.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Output.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Doctor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Check.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Department.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +47,19 @@
     <ClInclude Include="Patient.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ManagementSystem.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Output.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Doctor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Check.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Department.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,18 +1,27 @@
-#pragma once
+#pragma once 
 #include <string>
-#include <unordered_map>
-// Store the data of Patient
+#include <vector>
+
+enum class patientIndex {
+	name = 0,
+	contact = 1,
+	ID = 2,
+	fee = 3
+};
 
 class Patient{
 public:
-	Patient(std::string patientName, int patientID, std::string contact, std::string doctorName, int cost);  // initialization
-	std::vector<std::pair<std::string, int>> getPatientInformation(); // Return processed patient's information
+	Patient(std::string patientName, std::string contact, unsigned int patientID, float fee);
+	std::vector<std::string> getPatientInformation();
+	bool modifyContact(std::string newContact);
+	bool modifyFee(float fee);
 
 private:
 	std::string patientName;
-	int patientID;
 	std::string contact;
-	std::string doctorName;
-	int cost;
+	unsigned int patientID;
+	float unpaidFee;
 };
+
+
 
