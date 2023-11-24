@@ -1,6 +1,11 @@
 #pragma once
 #include "Doctor.h"
 
+enum class departmentIndex {
+	name = 0,
+	ID = 1
+};
+
 class Department{
 public:
 	Department(std::string _departmentName, unsigned int _departmentID, std::vector<Doctor*> _doctors);
@@ -8,6 +13,8 @@ public:
 	void addDoctor(std::string doctorName, std::string contact, unsigned ID, std::string description); //在该科室下添加医生
 
 	std::string getName() { return departmentName; }
+	unsigned int getDepartmentID() { return departmentID; }
+	std::vector<Doctor*> getDoctors() { return doctors; }
 
 private:
 	std::string departmentName;

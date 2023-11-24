@@ -2,12 +2,12 @@
 #include "Tool.h"
 using namespace std;
 
-Hospital::Hospital(string _hospitalName, string _location, string _contact, unsigned int _HospitalID,
+Hospital::Hospital(string _hospitalName, string _location, string _contact, unsigned int _hospitalID,
 	int _averageCost, float _rank, vector<string> _comments, vector<Department*> _departments) {
 	hospitalName = _hospitalName;
 	location = _location;
 	contact = _contact;
-	HospitalID = _HospitalID;
+	hospitalID = _hospitalID;
 	averageCost = _averageCost;
 	rank = _rank;
 	comments = _comments;
