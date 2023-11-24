@@ -52,6 +52,7 @@ vector<Department*> HospitalManagementSystem::readDepartments(ifstream& hospital
 		departments.push_back(new Department(info[(int)departmentIndex::name],
 			(unsigned int)stoi(info[(int)departmentIndex::ID]), doctors));
 	} while (true);
+	return departments;
 }
 
 vector<Doctor*> HospitalManagementSystem::readDoctors(ifstream& hospitalData) {
@@ -96,4 +97,16 @@ string HospitalManagementSystem::updateHospitalInformation(Hospital* hospital) {
 		dataStream += "subdepartmentend\n";
 	}
 	return dataStream;
+}
+
+vector<vector<string>> HospitalManagementSystem::getHospitalList() {
+	vector<vector<string>>hospitalList;
+	for (Hospital* hospital : hospitals) {
+		ostringstream rank;
+		rank << std::fixed << setprecision(2) << hospital->getRank();
+		vector<string> hospitalInfomation = { hospital->getHospitalName(), hospital->getContact(),
+			hospital->getLocation(), to_string(hospital->getAverageCost()), rank.str() };
+		hospitalList.push_back(hospitalInfomation);
+	}
+	return hospitalList;
 }

@@ -5,26 +5,19 @@
 #include "Doctor.h"
 #include "UserManagementSystem.h"
 #include "PatientManagementSystem.h"
+#include "HospitalManagementSystem.h"
 
 using namespace std;
 // Driver Code 
 int main()
 {
-	PatientManagementSystem PMS;
-	for (auto patientInfor : PMS.getPatientList(1)) {
-		for (auto info : patientInfor) {
-			cout << info << " ";
+	HospitalManagementSystem HMS;
+	HMS.updateInformation();
+	for (vector<string> hospital : HMS.getHospitalList()) {
+		for (string str : hospital) {
+			cout << str << " ";
 		}
 		cout << endl;
 	}
-	cout << (PMS.sendBill(1, -60)).getErrorInfo() << endl;
-	cout << (PMS.sendBill(1, 60)).getErrorInfo() << endl;
-	for (auto patientInfor : PMS.getPatientList(1)) {
-		for (auto info : patientInfor) {
-			cout << info << " ";
-		}
-		cout << endl;
-	}
-	PMS.updateInformation();
 	return 0;
 }

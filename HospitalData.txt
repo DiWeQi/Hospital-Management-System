@@ -1,6 +1,4 @@
-YunNan Hospital,YunNan road NO.212,15988006655,1,100,5
-It's a good hospital
-commentend
+YunNan Hospital,YunNan road NO.212,15988006655,1,100,5.00
 Emergency Department,1
 Qiu,18769507788,1,I play Genshin,112233
 subdepartmentend
@@ -8,9 +6,7 @@ Dermatology Department,2
 Weng,13860911980,2,I also play Genshin,223344
 subdepartmentend
 departmentend
-NanJing Hospital,NanJing road NO.99,15951880068,1,150,7.5
-It's a good hospital
-commentend
+NanJing Hospital,NanJing road NO.99,15951880068,1,150,7.50
 Emergency Department,1
 Yi,18779637788,3,I also play Genshin,859622
 subdepartmentend

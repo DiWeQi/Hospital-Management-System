@@ -17,6 +17,8 @@ public:
 	void updateInformation();
 	std::string updateHospitalInformation(Hospital* hospital);
 
+	std::vector<std::vector<std::string>> getHospitalList();
+
 private:
 	std::vector<Hospital*> hospitals;
 };
