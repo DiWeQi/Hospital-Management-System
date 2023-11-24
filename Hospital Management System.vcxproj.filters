@@ -33,10 +33,19 @@
     <ClCompile Include="Doctor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Check.cpp">
+    <ClCompile Include="Tool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Department.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UserManagementSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorHandle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PatientManagementSystem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,16 +65,19 @@
     <ClInclude Include="Doctor.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Check.h">
+    <ClInclude Include="Tool.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Department.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="UserManagementSystem.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
+    <ClInclude Include="ErrorHandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PatientManagementSystem.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

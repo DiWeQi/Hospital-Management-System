@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Check.cpp" />
+    <ClCompile Include="ErrorHandle.cpp" />
+    <ClCompile Include="PatientManagementSystem.cpp" />
+    <ClCompile Include="Tool.cpp" />
     <ClCompile Include="Department.cpp" />
     <ClCompile Include="Doctor.cpp" />
     <ClCompile Include="Hospital.cpp" />
@@ -135,17 +137,19 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Patient.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserManagementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Department.h" />
     <ClInclude Include="Doctor.h" />
+    <ClInclude Include="ErrorHandle.h" />
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Patient.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
+    <ClInclude Include="PatientManagementSystem.h" />
     <ClInclude Include="User.h" />
-    <ClInclude Include="Check.h" />
+    <ClInclude Include="Tool.h" />
+    <ClInclude Include="UserManagementSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

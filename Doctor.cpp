@@ -1,12 +1,13 @@
 #include "Doctor.h"
-#include "Check.h"
+#include "Tool.h"
 using namespace std;
 
-Doctor::Doctor(string _doctorName, string _contact, unsigned int _doctorID, string _description){
+Doctor::Doctor(string _doctorName, string _contact, unsigned int _doctorID, string _description, string _secretCode){
 	doctorName = _doctorName;
 	contact = _contact;
 	doctorID = _doctorID;
 	description = checkLimitSize(_description, 80);
+	secretCode = _secretCode;
 }
 
 vector<string> Doctor::getDoctorInformation() {
@@ -14,14 +15,14 @@ vector<string> Doctor::getDoctorInformation() {
 	return information;
 }
 
-bool Doctor::modifyContact(string newContact) {
-	if (!checkContact(newContact)) return false;
+ErrorHandle Doctor::modifyContact(string newContact) {
+	if (!checkContact(newContact)) return ErrorHandle("包含非法字符的无效手机号");
 	contact = newContact;
-	return true;
+	return ErrorHandle();
 }
 
-bool Doctor::modifyDescription(string newDescription) {
-	if (!checkSize(newDescription))return false;
+ErrorHandle Doctor::modifyDescription(string newDescription) {
+	if (!checkSize(newDescription))return ErrorHandle("描述不能为空");
 	description = checkLimitSize(newDescription, 80);
-	return true;
+	return ErrorHandle();
 }

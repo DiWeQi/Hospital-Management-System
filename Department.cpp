@@ -1,5 +1,5 @@
 #include "Department.h"
-
+#include "Tool.h"
 using namespace std;
 
 Department::Department(std::string _departmentName, unsigned int _departmentID, std::vector<Doctor*> _doctors) {
@@ -17,6 +17,6 @@ vector<vector<string>> Department::getDoctorList() {
 }
 
 void Department::addDoctor(string doctorName, string contact, unsigned ID, string description) {
-	Doctor* newDoctor = new Doctor(doctorName, contact, ID, description);
+	Doctor* newDoctor = new Doctor(doctorName, contact, ID, description, to_string(generateRandom()));
 	doctors.push_back(newDoctor);
 }

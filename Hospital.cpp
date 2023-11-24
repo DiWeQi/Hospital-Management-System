@@ -1,5 +1,5 @@
 #include "Hospital.h"
-#include "Check.h"
+#include "Tool.h"
 using namespace std;
 
 Hospital::Hospital(string _hospitalName, string _location, string _contact, unsigned int _HospitalID,
