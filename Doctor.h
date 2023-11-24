@@ -7,7 +7,8 @@ enum class doctorIndex {
 	name = 0,
 	contact = 1,
 	ID = 2,
-	description = 3
+	description = 3,
+	secretCode = 4
 };
 
 class Doctor{
