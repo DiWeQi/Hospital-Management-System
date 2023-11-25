@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ErrorHandle.cpp" />
     <ClCompile Include="HospitalManagementSystem.cpp" />
+    <ClCompile Include="ManagementSystem.cpp" />
     <ClCompile Include="PatientManagementSystem.cpp" />
     <ClCompile Include="Tool.cpp" />
     <ClCompile Include="Department.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="ErrorHandle.h" />
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="HospitalManagementSystem.h" />
+    <ClInclude Include="ManagementSystem.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Patient.h" />
     <ClInclude Include="PatientManagementSystem.h" />
