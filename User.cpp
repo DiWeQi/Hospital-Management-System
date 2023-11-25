@@ -24,3 +24,7 @@ ErrorHandle User::modifyPassword(string newPassword) {
 	password = newPassword;
 	return ErrorHandle();
 }
+
+void User::modifyBlance(float _balance) {
+	balance += _balance;
+}

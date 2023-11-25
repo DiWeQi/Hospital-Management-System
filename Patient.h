@@ -18,6 +18,8 @@ public:
 
 	ErrorHandle modifyContact(std::string newContact);
 	ErrorHandle modifyFee(float fee);
+	void modifyBind(unsigned int);
+	void setUnpaidFee(float unpaid);
 
 	std::string getPatientName() { return patientName; }
 	std::string getContact() { return contact; }

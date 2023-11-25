@@ -21,6 +21,7 @@ public:
 	std::vector<std::string> getUserInformation();
 
 	ErrorHandle modifyPassword(std::string newPassword);
+	void modifyBlance(float _balance);
 
 	unsigned int getUserID() { return userID; }
 	unsigned int getIdentityCode() { return identityCode; }

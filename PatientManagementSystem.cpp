@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip> 
+#include <algorithm>
 #include "PatientManagementSystem.h"
 #include "Tool.h"
 using namespace std;
@@ -44,13 +45,27 @@ vector<vector<string>> PatientManagementSystem::getPatientList(unsigned int doct
 	return patientList;
 }
 
+Patient* PatientManagementSystem::getPatient(unsigned int ID) {
+	for (Patient* patient : patients) {
+		if (ID == patient->getPatientID()) return patient;
+	}
+	return NULL;
+}
+
 ErrorHandle PatientManagementSystem::sendBill(unsigned int patientID, float fee) {
-	if (!checkBalance(fee)) return ErrorHandle("金额不能小于0");
+	if (!checkBalance(fee)) return ErrorHandle("The amount cannot be less than 0");
 	for (Patient* patient : patients) {
 		if (patient->getPatientID() == patientID) {
 			patient->modifyFee(fee);
 			return ErrorHandle();
 		}
 	}
-	return ErrorHandle("不存在该患者");
+	return ErrorHandle("The patient does not exist");
+}
+
+unsigned int PatientManagementSystem::patientRegister(std::string _patientName, std::string _contact) {
+	patients.push_back(new Patient(_patientName, _contact, patients.size() + 1, 0, 0));
+	sort(patients.begin(), patients.end(),
+		[](Patient* a, Patient* b)->bool {return a->getPatientID() > b->getPatientID();});
+	return patients[0]->getPatientID() + 1;
 }

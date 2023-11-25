@@ -18,9 +18,13 @@ public:
 	std::string updateHospitalInformation(Hospital* hospital);
 
 	std::vector<std::vector<std::string>> getHospitalList();
+	Doctor* getDoctor(unsigned int ID);
+	Hospital* getHospital(unsigned int ID);
 	void sortHospitalList(std::string mode);
 
-	//void test();
+	int doctorRegister(std::string _doctorName, std::string _secretCode);
+	std::string getCommentList(unsigned int ID);
+	std::string getDepartmentList(unsigned int ID);
 
 private:
 	std::vector<Hospital*> hospitals;

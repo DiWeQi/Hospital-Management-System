@@ -116,6 +116,24 @@ vector<vector<string>> HospitalManagementSystem::getHospitalList() {
 	return hospitalList;
 }
 
+Doctor* HospitalManagementSystem::getDoctor(unsigned int ID) {
+	for (Hospital* hospital : hospitals) {
+		for (Department* department : hospital -> getDepartments()) {
+			for (Doctor* doctor : department -> getDoctors()) {
+				if (ID == doctor->getDoctorID()) return doctor;
+			}
+		}
+	}
+	return NULL;
+}
+
+Hospital* HospitalManagementSystem::getHospital(unsigned int ID) {
+	for (Hospital* hospital : hospitals) {
+		if (ID == hospital->getHospitalID()) return hospital;
+	}
+	return NULL;
+}
+
 void HospitalManagementSystem::sortHospitalList(string mode) {
 	if (mode == "rank") {
 		sort(hospitals.begin(), hospitals.end(),
@@ -134,8 +152,44 @@ void HospitalManagementSystem::sortHospitalList(string mode) {
 	}
 }
 
-/*void HospitalManagementSystem::test() {
+int HospitalManagementSystem::doctorRegister(std::string _doctorName, std::string _secretCode) {
 	for (Hospital* hospital : hospitals) {
-		hospital->addEvaluate("This is a test info");
+		for (Department* department : hospital->getDepartments()) {
+			for (Doctor* doctor : department->getDoctors()) {
+				if (_doctorName == doctor->getDoctorName() &&
+					_secretCode == doctor->getSecretCode()) return doctor -> getDoctorID();
+			}
+		}
 	}
-}*/
+	return -1;
+}
+
+string HospitalManagementSystem::getCommentList(unsigned int ID) {
+	string comments = "";
+	for (Hospital* hospital : hospitals) {
+		if (ID == hospital->getHospitalID()) {
+			for (string comment : hospital->getCommentList()) {
+				comments += comment + "\n";
+			}
+			return comments;
+		}
+	}
+	return comments;
+}
+
+string HospitalManagementSystem::getDepartmentList(unsigned int ID) {
+	string info = departmentLine("Doctor", "Contact", "Description");
+	for (Hospital* hospital : hospitals) {
+		for (Department* department : hospital->getDepartments()) {
+			if (ID == department->getDepartmentID()) {
+				for (vector<string> doctor : department -> getDoctorList()) {
+					info += departmentLine(doctor[(int)doctorIndex::name], 
+						doctor[(int)doctorIndex::contact], 
+						doctor[(int)doctorIndex::description]) + "\n";
+				}
+				return info;
+			}
+		}
+	}
+	return info;
+}

@@ -14,7 +14,7 @@ NanJing Hospital,NanJing road NO.99,15951880068,1,150,7.50
 I like Genshin
 This is a test info
 commentend
-Emergency Department,1
+Emergency Department,3
 Yi,18779637788,3,I also play Genshin,859622
 subdepartmentend
 departmentend

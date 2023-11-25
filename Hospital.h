@@ -18,7 +18,7 @@ class Hospital {
 public:
 	Hospital(std::string _hospitalName, std::string _location, std::string _contact, unsigned int _hospitalID,
 		int _averageCost, float _rank, std::vector<std::string> _comments, std::vector<Department*> _departments);
-	void addEvaluate(std::string newComment);
+	ErrorHandle addEvaluate(std::string newComment);
 	std::vector<std::string> getCommentList();
 	std::vector<std::string> getDepartmentList();
 

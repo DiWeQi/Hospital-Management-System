@@ -3,28 +3,32 @@
 #include "PatientManagementSystem.h"
 #include "UserManagementSystem.h"
 #include "ErrorHandle.h"
+#include "UI.h"
 
 class ManagementSystem{
 public:
 	ManagementSystem();
 	ErrorHandle userLogin();
+	ErrorHandle userLogout();
+	ErrorHandle bindIdentity();
+
 	ErrorHandle userRegister();
+
 
 	//医生相关接口
 	ErrorHandle getPatientList();
-	ErrorHandle sendBill(unsigned int ID);
+	ErrorHandle sendBill();
 	ErrorHandle modifyDoctorInformation();
 
 	//患者相关接口
 	ErrorHandle getHospitalList();
-	ErrorHandle sortHospitalList(std::string);
+	ErrorHandle sortHospitalList();
 	ErrorHandle getCommentList();
 	ErrorHandle getDepartmentList();
-	ErrorHandle getDepartmentInformation(unsigned int);
-	ErrorHandle addEvaluate(std::string);
-	ErrorHandle makeAppointment(unsigned int);
-	ErrorHandle modifyUserInformation(std::string newInformation, int index);
-	ErrorHandle charge(float money);
+	ErrorHandle addEvaluate();
+	ErrorHandle makeAppointment();
+	ErrorHandle modifyUserInformation();
+	ErrorHandle charge();
 	ErrorHandle pay();
 
 private:
@@ -32,8 +36,11 @@ private:
 	Patient* identityBindP;
 	Doctor* identityBindD;
 	int identityCode;
-
+	int verified;
 	PatientManagementSystem* PMS;
 	HospitalManagementSystem* HMS;
+	UserManagementSystem* UMS;
+	UI* EUI;
+	std::vector<std::string> pages;
 };
 

@@ -31,3 +31,11 @@ ErrorHandle Patient::modifyFee(float newFee){
 	unpaidFee += newFee;
 	return ErrorHandle();
 }
+
+void Patient::setUnpaidFee(float unpaid) {
+	unpaidFee = unpaid;
+}
+
+void Patient::modifyBind(unsigned int ID) {
+	bind = ID;
+}

@@ -138,6 +138,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Patient.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserManagementSystem.cpp" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="Output.h" />
     <ClInclude Include="Patient.h" />
     <ClInclude Include="PatientManagementSystem.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="Tool.h" />
     <ClInclude Include="UserManagementSystem.h" />

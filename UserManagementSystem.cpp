@@ -46,12 +46,35 @@ unordered_map<string, string> UserManagementSystem::getUserList() {
 	return userList;
 }
 
-ErrorHandle UserManagementSystem::userRegister(unsigned int indentityCode,
-	string userName, string password, string _secretCode) {
+User* UserManagementSystem::getUser(unsigned int ID) {
 	for (User* user : users) {
-		if (userName == user->getUserName()) return ErrorHandle("该用户名已存在");
+		if (user->getUserID() == ID) return user;
 	}
-	User* user = new User((unsigned int)users.size() + 1, indentityCode, userName, password, 0, 0);
+	return NULL;
+}
+
+ErrorHandle UserManagementSystem::userRegister(unsigned int indentityCode,
+	string userName, string password, unsigned int ID) {
+	User* user = new User(ID, indentityCode, userName, password, 0, 0);
 	users.push_back(user);
 	return ErrorHandle();
+}
+
+ErrorHandle UserManagementSystem::userCheckName(string userName) {
+	for (User* user : users) {
+		if (userName == user->getUserName()) return ErrorHandle("This user already exists");
+	}
+	return ErrorHandle();
+}
+
+User* UserManagementSystem::userLogin(std::string userName, std::string password) {
+	for (User* user : users) {
+		if (userName == user->getUserName()) {
+			if (password == user->getPassword()) {
+				return user;
+			}
+			return NULL;
+		}
+	}
+	return NULL;
 }

@@ -14,8 +14,10 @@ Hospital::Hospital(string _hospitalName, string _location, string _contact, unsi
 	departments = _departments;
 }
 
-void Hospital::addEvaluate(std::string newComment) {
+ErrorHandle Hospital::addEvaluate(std::string newComment) {
+	if (!checkSize(newComment)) return ErrorHandle("No comment added");
 	comments.push_back(newComment);
+	return ErrorHandle();
 }
 
 std::vector<std::string> Hospital::getCommentList() {
