@@ -20,7 +20,7 @@ vector<string> User::getUserInformation() {
 }
 
 ErrorHandle User::modifyPassword(string newPassword) {
-	if (!checkSize(newPassword)) return ErrorHandle("ÃÜÂë²»ÄÜÎª¿Õ");
+	if (!checkSize(newPassword)) return ErrorHandle("Password cannot be empty");
 	password = newPassword;
 	return ErrorHandle();
 }

@@ -136,7 +136,6 @@
     <ClCompile Include="Doctor.cpp" />
     <ClCompile Include="Hospital.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Output.cpp" />
     <ClCompile Include="Patient.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="User.cpp" />
@@ -149,7 +148,6 @@
     <ClInclude Include="Hospital.h" />
     <ClInclude Include="HospitalManagementSystem.h" />
     <ClInclude Include="ManagementSystem.h" />
-    <ClInclude Include="Output.h" />
     <ClInclude Include="Patient.h" />
     <ClInclude Include="PatientManagementSystem.h" />
     <ClInclude Include="UI.h" />
