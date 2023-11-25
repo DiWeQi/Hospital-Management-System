@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip> 
+#include <algorithm>
 #include "HospitalManagementSystem.h"
 #include "Tool.h"
 using namespace std;
@@ -87,6 +88,10 @@ string HospitalManagementSystem::updateHospitalInformation(Hospital* hospital) {
 	string dataStream = hospital -> getHospitalName() + "," + hospital -> getLocation() + "," +
 		hospital -> getContact() + "," + to_string(hospital -> getHospitalID()) + "," +
 		to_string(hospital -> getAverageCost()) + "," + rank.str() + "\n";
+	for (string comment : hospital -> getComments()) {
+		dataStream += comment + "\n";
+	}
+	dataStream += "commentend\n";
 	for (Department* department : hospital->getDepartments()) {
 		dataStream += department->getName() + "," + to_string(department->getDepartmentID()) + "\n";
 		for (Doctor* doctor : department->getDoctors()) {
@@ -110,3 +115,27 @@ vector<vector<string>> HospitalManagementSystem::getHospitalList() {
 	}
 	return hospitalList;
 }
+
+void HospitalManagementSystem::sortHospitalList(string mode) {
+	if (mode == "rank") {
+		sort(hospitals.begin(), hospitals.end(),
+			[](Hospital* a, Hospital* b)->bool {return a -> getRank() > b -> getRank();});
+	}
+	else if (mode == "name") {
+		sort(hospitals.begin(), hospitals.end(),
+			[](Hospital* a, Hospital* b)->bool {return a -> getHospitalName() < b-> getHospitalName();});
+	}
+	else if (mode == "cost") {
+		sort(hospitals.begin(), hospitals.end(),
+			[](Hospital* a, Hospital* b)->bool {return a-> getAverageCost() < b -> getAverageCost();});
+	}
+	else {
+		sort(hospitals.begin(), hospitals.end());
+	}
+}
+
+/*void HospitalManagementSystem::test() {
+	for (Hospital* hospital : hospitals) {
+		hospital->addEvaluate("This is a test info");
+	}
+}*/

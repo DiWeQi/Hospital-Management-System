@@ -12,12 +12,45 @@ using namespace std;
 int main()
 {
 	HospitalManagementSystem HMS;
-	HMS.updateInformation();
+	cout << "-------------д╛хо-------------" << endl;
 	for (vector<string> hospital : HMS.getHospitalList()) {
 		for (string str : hospital) {
 			cout << str << " ";
 		}
 		cout << endl;
 	}
+	cout << "-------------rank-------------" << endl;
+	HMS.sortHospitalList("rank");
+	for (vector<string> hospital : HMS.getHospitalList()) {
+		for (string str : hospital) {
+			cout << str << " ";
+		}
+		cout << endl;
+	}
+	cout << "-------------name-------------" << endl;
+	HMS.sortHospitalList("name");
+	for (vector<string> hospital : HMS.getHospitalList()) {
+		for (string str : hospital) {
+			cout << str << " ";
+		}
+		cout << endl;
+	}
+	cout << "-------------cost-------------" << endl;
+	HMS.sortHospitalList("cost");
+	for (vector<string> hospital : HMS.getHospitalList()) {
+		for (string str : hospital) {
+			cout << str << " ";
+		}
+		cout << endl;
+	}
+	cout << "-------------д╛хо-------------" << endl;
+	HMS.sortHospitalList("111");
+	for (vector<string> hospital : HMS.getHospitalList()) {
+		for (string str : hospital) {
+			cout << str << " ";
+		}
+		cout << endl;
+	}
+	HMS.updateInformation();
 	return 0;
 }

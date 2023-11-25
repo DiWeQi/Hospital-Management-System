@@ -18,6 +18,9 @@ public:
 	std::string updateHospitalInformation(Hospital* hospital);
 
 	std::vector<std::vector<std::string>> getHospitalList();
+	void sortHospitalList(std::string mode);
+
+	//void test();
 
 private:
 	std::vector<Hospital*> hospitals;
