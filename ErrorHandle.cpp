@@ -2,7 +2,7 @@
 using namespace std;
 
 ErrorHandle::ErrorHandle() {
-	errorInfo = "²Ù×÷³É¹¦";
+	errorInfo = "Operation succeeded";
 	hasError = false;
 }
 

@@ -109,8 +109,10 @@ vector<vector<string>> HospitalManagementSystem::getHospitalList() {
 	for (Hospital* hospital : hospitals) {
 		ostringstream rank;
 		rank << std::fixed << setprecision(2) << hospital->getRank();
-		vector<string> hospitalInfomation = { hospital->getHospitalName(), hospital->getContact(),
-			hospital->getLocation(), to_string(hospital->getAverageCost()), rank.str() };
+		vector<string> hospitalInfomation = { hospital->getHospitalName(), 
+			hospital->getLocation(),hospital->getContact(),
+			to_string(hospital->getHospitalID()), 
+			to_string(hospital->getAverageCost()), rank.str() };
 		hospitalList.push_back(hospitalInfomation);
 	}
 	return hospitalList;

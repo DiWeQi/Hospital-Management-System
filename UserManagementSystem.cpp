@@ -34,6 +34,7 @@ void UserManagementSystem::updateInformation() {
 			+ user->getUserName() + "," + user->getPassword() + "," + to_string(user->getBindDoctor())
 			+ "," + balance.str() + "\n";
 	}
+	dataStream = dataStream.substr(0, dataStream.size() - 1);
 	userData << dataStream;
 	userData.close();
 }

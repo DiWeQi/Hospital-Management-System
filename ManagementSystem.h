@@ -8,6 +8,7 @@
 class ManagementSystem{
 public:
 	ManagementSystem();
+	void updateInformation();
 	ErrorHandle userLogin();
 	ErrorHandle userLogout();
 	ErrorHandle bindIdentity();
@@ -31,6 +32,11 @@ public:
 	ErrorHandle charge();
 	ErrorHandle pay();
 
+	int getVerified() { return verified; }
+	int getIndentityCode() { return identityCode; }
+
+	UI* EUI;
+
 private:
 	User* currentUser;
 	Patient* identityBindP;
@@ -40,7 +46,6 @@ private:
 	PatientManagementSystem* PMS;
 	HospitalManagementSystem* HMS;
 	UserManagementSystem* UMS;
-	UI* EUI;
 	std::vector<std::string> pages;
 };
 

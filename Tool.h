@@ -14,6 +14,8 @@ bool checkSize(std::string str);
 //检测str大小是否小于size，若大于则截去超出部分
 std::string checkLimitSize(std::string str, int size);
 
+bool checkFloat(std::string str);
+
 //从一行以逗号分隔的数据，区分数据
 std::vector<std::string> readOneLine(std::string dataStream, int numberOfData);
 

@@ -4,13 +4,13 @@ I love it!
 This is a test info
 commentend
 Emergency Department,1
-Qiu,18769507788,1,I play Genshin,112233
+Qiu,12345678,1,I am very tired,112233
 subdepartmentend
 Dermatology Department,2
 Weng,13860911980,2,I also play Genshin,223344
 subdepartmentend
 departmentend
-NanJing Hospital,NanJing road NO.99,15951880068,1,150,7.50
+NanJing Hospital,NanJing road NO.99,15951880068,2,150,7.50
 I like Genshin
 This is a test info
 commentend

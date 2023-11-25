@@ -9,9 +9,16 @@ ManagementSystem::ManagementSystem() {
 	UMS = new UserManagementSystem();
 	identityCode = 0;
 	verified = 0;
+	currentUser = NULL;
 	identityBindP = NULL;
 	identityBindD = NULL;
 	EUI = new UI();
+}
+
+void ManagementSystem::updateInformation() {
+	UMS->updateInformation();
+	HMS->updateInformation();
+	PMS->updateInformation();
 }
 
 ErrorHandle ManagementSystem::userLogin() {
@@ -31,6 +38,9 @@ ErrorHandle ManagementSystem::userLogout() {
 	HMS->updateInformation();
 	UMS->updateInformation();
 	verified = 0;
+	currentUser = NULL;
+	identityBindP = NULL;
+	identityBindD = NULL;
 	return ErrorHandle();
 }
 
@@ -39,24 +49,28 @@ ErrorHandle ManagementSystem::bindIdentity() {
 	identityBindP = NULL;
 	identityCode = (int)currentUser->getIdentityCode();
 	if (identityCode == 0) 
-		identityBindP = PMS->getPatient(currentUser->getIdentityCode());
+		identityBindP = PMS->getPatient(currentUser->getUserID());
 	else 
-		identityBindD = HMS->getDoctor(currentUser->getIdentityCode());
+		identityBindD = HMS->getDoctor(currentUser->getUserID());
 	return ErrorHandle();
 }
 
 ErrorHandle ManagementSystem::userRegister() {
 	string name, contact, userName, password, code, secret, des;
 	EUI->registerInterface(name, contact, userName, password, code, secret, des);
-	if (!checkBasicInformation(contact, password, name, code))
-		return ErrorHandle("User information is invalid, registration failed");
-	if (stoi(code)) {
-		unsigned int ID = HMS -> doctorRegister(name, secret);
-		UMS->userRegister(1, userName, password, ID);
-	}
-	else {
+	if (code == "0") {
+		if (!checkBasicInformation(contact, password, name, code))
+			return ErrorHandle("User information is invalid, registration failed");
 		unsigned int ID = PMS->patientRegister(name, contact);
 		UMS->userRegister(0, userName, password, ID);
+	}
+	else if (code == "1") {
+		unsigned int ID = HMS -> doctorRegister(name, secret);
+		if (ID == -1) return ErrorHandle("The doctor does not exit");
+		return UMS->userRegister(1, userName, password, ID);
+	}
+	else {
+		return ErrorHandle("Invalid indentity code");
 	}
 	return ErrorHandle();
 }
@@ -68,18 +82,19 @@ ErrorHandle ManagementSystem::getPatientList() {
 }
 
 ErrorHandle ManagementSystem::sendBill() {
-	unsigned int ID;
-	float fee;
+	string ID, fee;
 	EUI->sendBill(ID, fee);
-	return PMS->sendBill(ID, fee);
+	if (!checkContact(ID))return ErrorHandle("Invalid ID");
+	if (!checkFloat(fee)) return ErrorHandle("Invalid amount");
+	return PMS->sendBill(stoi(ID), stof(fee), identityBindD->getDoctorID());
 }
 
 ErrorHandle ManagementSystem::modifyDoctorInformation() {
 	string newContact, newPassword, newDescription;
 	EUI->modifyDoctorInformation(newContact, newPassword, newDescription);
-	if(newContact != " ")identityBindD->modifyContact(newContact);
-	if (newPassword != " ")currentUser->modifyPassword(newPassword);
-	if(newDescription != " ")identityBindD->modifyDescription(newDescription);
+	if(newContact != "NA")identityBindD->modifyContact(newContact);
+	if (newPassword != "NA")currentUser->modifyPassword(newPassword);
+	if(newDescription != "NA")identityBindD->modifyDescription(newDescription);
 	return ErrorHandle();
 }
 
@@ -97,52 +112,56 @@ ErrorHandle ManagementSystem::sortHospitalList() {
 }
 
 ErrorHandle ManagementSystem::getCommentList() {
-	unsigned int ID = EUI->commentListInterface();
-	string page = HMS->getCommentList(ID);
+	string ID = EUI->commentListInterface();
+	if (!checkContact(ID))return ErrorHandle("Invalid ID");
+	string page = HMS->getCommentList(stoi(ID));
 	EUI->separateLine(100);
 	if (page == "") {
-		cout << "The hospital does not exist";
 		return ErrorHandle("The hospital does not exist");
 	}
 	cout << page;
+	EUI->separateLine(100);
 	pages.push_back(page);
 	return ErrorHandle();
 }
 
 ErrorHandle ManagementSystem::getDepartmentList() {
-	unsigned int ID = EUI->departmentListInterface();
-	string page = HMS->getDepartmentList(ID);
+	string ID = EUI->departmentListInterface();
+	if (!checkContact(ID))return ErrorHandle("Invalid ID");
+	string page = HMS->getDepartmentList(stoi(ID));
 	EUI->separateLine(120);
 	if (page == "") {
-		cout << "The department does not exist";
 		return ErrorHandle("The department does not exist");
 	}
 	cout << page;
+	EUI->separateLine(120);
 	pages.push_back(page);
 	return ErrorHandle();
 }
 
 ErrorHandle ManagementSystem::addEvaluate() {
-	unsigned int ID;
-	string comment;
+	string ID, comment;
 	EUI->addEvaluateInterface(ID, comment);
-	Hospital* hospital = HMS->getHospital(ID);
+	if (!checkContact(ID)) return ErrorHandle("Invalid ID");
+	Hospital* hospital = HMS->getHospital(stoi(ID));
 	if (hospital == NULL) return ErrorHandle("The hospital does not exist");
 	return hospital->addEvaluate(comment);
 }
 
 ErrorHandle ManagementSystem::makeAppointment() {
-	unsigned int ID = EUI->makeAppointmentInterface();
-	Doctor* doctor = HMS->getDoctor(ID);
+	string ID = EUI->makeAppointmentInterface();
+	if (!checkContact(ID)) return ErrorHandle("Invalid ID");
+	Doctor* doctor = HMS->getDoctor(stoi(ID));
 	if (doctor == NULL) return ErrorHandle("The doctor does not exist");
-	identityBindP->modifyBind(ID);
+	identityBindP->modifyBind(stoi(ID));
 	return ErrorHandle();
 }
 
 ErrorHandle ManagementSystem::charge() {
-	float amount = EUI->chargeInterface();
-	if (!checkBalance(amount)) return ErrorHandle("The amount cannot be less than 0");
-	currentUser->modifyBlance(amount);
+	string amount = EUI->chargeInterface();
+	if (!checkFloat(amount)) return ErrorHandle("Invalid amount");
+	if (!checkBalance(stof(amount))) return ErrorHandle("The amount cannot be less than 0");
+	currentUser->modifyBlance(stof(amount));
 	return ErrorHandle();
 }
 
@@ -155,10 +174,10 @@ ErrorHandle ManagementSystem::pay() {
 }
 
 ErrorHandle ManagementSystem::modifyUserInformation() {
-	int index;
-	string newInformation;
+	string index, newInformation;
 	EUI->modifyUserInformation(newInformation, index);
-	if (index == 1)return identityBindP->modifyContact(newInformation);
-	if (index == 2)return currentUser->modifyPassword(newInformation);
+	if (!checkContact(index)) return ErrorHandle("Invalid ID");
+	if (stoi(index) == 1)return identityBindP->modifyContact(newInformation);
+	if (stoi(index) == 2)return currentUser->modifyPassword(newInformation);
 	else return ErrorHandle("Invalid choice");
 }

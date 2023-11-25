@@ -9,7 +9,7 @@ public:
 
 	std::vector<std::vector<std::string>> getPatientList(unsigned int doctorID);
 	Patient* getPatient(unsigned int ID);
-	ErrorHandle sendBill(unsigned int patientID, float fee);
+	ErrorHandle sendBill(unsigned int doctorID, unsigned int patientID, float fee);
 
 	unsigned int patientRegister(std::string _patientName, std::string _contact);
 

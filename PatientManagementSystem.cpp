@@ -32,6 +32,7 @@ void PatientManagementSystem::updateInformation() {
 			+ to_string(patient->getPatientID()) + "," + unpaidFee.str() + "," 
 			+ to_string(patient -> getBind()) + "\n";
 	}
+	dataStream = dataStream.substr(0, dataStream.size() - 1);
 	patientData << dataStream;
 	patientData.close();
 }
@@ -39,8 +40,7 @@ void PatientManagementSystem::updateInformation() {
 vector<vector<string>> PatientManagementSystem::getPatientList(unsigned int doctorID) {
 	vector<vector<string>> patientList;
 	for (Patient* patient : patients) {
-		if(patient -> getBind() == doctorID)
-			patientList.push_back(patient->getPatientInformation());
+		if(patient -> getBind() == doctorID)patientList.push_back(patient->getPatientInformation());
 	}
 	return patientList;
 }
@@ -52,10 +52,13 @@ Patient* PatientManagementSystem::getPatient(unsigned int ID) {
 	return NULL;
 }
 
-ErrorHandle PatientManagementSystem::sendBill(unsigned int patientID, float fee) {
+ErrorHandle PatientManagementSystem::sendBill(unsigned int doctorID, unsigned int patientID, float fee) {
 	if (!checkBalance(fee)) return ErrorHandle("The amount cannot be less than 0");
 	for (Patient* patient : patients) {
 		if (patient->getPatientID() == patientID) {
+			if (doctorID != patient->getBind()) {
+				return ErrorHandle("You are not this patient's doctor");
+			}
 			patient->modifyFee(fee);
 			return ErrorHandle();
 		}

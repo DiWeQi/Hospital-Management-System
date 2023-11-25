@@ -24,6 +24,19 @@ string checkLimitSize(string str, int size) {
 	return str;
 }
 
+bool checkFloat(std::string str) {
+	int cnt = 0; //只能有一个小数点
+	for (int index = 0; index < str.size(); index++) {
+		if (str[index] == '.') {
+			if (cnt || index == 0 || str.size() == 1) return false;
+			cnt++;
+			index++;
+		}
+		if (!isdigit(str[index])) return false;
+	}
+	return true;
+}
+
 vector<string> readOneLine(string dataStream, int numberOfData) {
 	vector<string> data;
 	for (int cnt = 0, index = 0; cnt < numberOfData; cnt++) {
@@ -55,28 +68,29 @@ bool checkBasicInformation(string contact, string passworad,
 
 string fillStr(string str, int size) {
 	string fill = "";
-	while (size--) {
+	while (size > 0) {
 		fill += str;
+		size--;
 	}
 	return fill;
 }
 
 string patientLine(string ID, string name, string contact, string unpaidFee) {
-	return "|" + ID + fillStr(" ", 4 - ID.size()) +
-		"|" + name + fillStr(" ", 14 - name.size()) +
-		"|" + contact + fillStr(" ", 14 - contact.size()) +
-		"|" + unpaidFee + fillStr(" ", 13 - unpaidFee.size()) + "|\n";
+	return "|" + ID + fillStr(" ", 4 - (int)ID.size()) +
+		"|" + name + fillStr(" ", 14 - (int)name.size()) +
+		"|" + contact + fillStr(" ", 14 - (int)contact.size()) +
+		"|" + unpaidFee + fillStr(" ", 13 - (int)unpaidFee.size()) + "|\n";
 }
 
 string hospitalLine(string name, string contact, string location, string rank) {
-	return "|" + name + fillStr(" ", 14 - name.size()) +
-		"|" + contact + fillStr(" ", 14 - contact.size()) +
-		"|" + location + fillStr(" ", 19 - location.size()) +
-		"|" + rank + fillStr(" ", 3 - rank.size()) + "|\n";
+	return "|" + name + fillStr(" ", 19 - (int)name.size()) +
+		"|" + contact + fillStr(" ", 14 - (int)contact.size()) +
+		"|" + location + fillStr(" ", 29 - (int)location.size()) +
+		"|" + rank + fillStr(" ", 3 - (int)rank.size()) + "|\n";
 }
 
 string departmentLine(string doctor, string contact, string description) {
-	return "|" + doctor + fillStr(" ", 14 - doctor.size()) +
-		"|" + contact + fillStr(" ", 14 - contact.size()) +
-		"|" + description + fillStr(" ", 88 - description.size()) + "|\n";
+	return "|" + doctor + fillStr(" ", 14 - (int)doctor.size()) +
+		"|" + contact + fillStr(" ", 14 - (int)contact.size()) +
+		"|" + description + fillStr(" ", 88 - (int)description.size()) + "|\n";
 }

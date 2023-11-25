@@ -24,7 +24,7 @@ std::vector<std::string> Hospital::getCommentList() {
 	int orderOfComment = 1;
 	vector<string> commentList;
 	for (string comment : comments) {
-		commentList.push_back(to_string(orderOfComment) + "£º" + comment);
+		commentList.push_back(to_string(orderOfComment++) + "£º" + comment);
 	}
 	return commentList;
 }

@@ -21,13 +21,13 @@ std::vector<std::string> Patient::getPatientInformation(){
 }
 
 ErrorHandle Patient::modifyContact(std::string newContact){
-	if (!checkContact(newContact)) return ErrorHandle("包含非法字符的无效手机号");
+	if (!checkContact(newContact)) return ErrorHandle("Invalid mobile phone number containing illegal characters");
 	contact = newContact;
 	return ErrorHandle();
 }
 
 ErrorHandle Patient::modifyFee(float newFee){
-	if (!checkBalance(newFee)) return ErrorHandle("金额不能小于0");
+	if (!checkBalance(newFee)) return ErrorHandle("The amount cannot be less than 0");
 	unpaidFee += newFee;
 	return ErrorHandle();
 }
