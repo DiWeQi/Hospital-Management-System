@@ -70,7 +70,7 @@ int main()
 				}
 			}
 		} 
-		MS.updateInformation();
+		MS.updateInformation(); //更新文件信息
 	}
 	
 	return 0;

@@ -189,7 +189,7 @@ string HospitalManagementSystem::getDepartmentList(unsigned int ID) {
 						doctor[(int)doctorIndex::contact], 
 						doctor[(int)doctorIndex::description]) + "\n";
 				}
-				return info;
+				return info.substr(0, info.size() - 1);
 			}
 		}
 	}

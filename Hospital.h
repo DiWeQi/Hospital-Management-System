@@ -5,6 +5,7 @@
 #include "Doctor.h"
 // Store the data of Hospital 
 
+//
 enum class hospitalIndex {
 	name = 0,
 	location = 1,

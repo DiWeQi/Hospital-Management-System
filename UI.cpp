@@ -1,5 +1,7 @@
 #include <string>
+#include <sstream>
 #include <iostream>
+#include <iomanip> 
 #include "UI.h"
 #include "Tool.h"
 using namespace std;
@@ -145,9 +147,13 @@ string UI::chargeInterface() {
 }
 
 bool UI::payInterface(float fee, float balance) {
-	if (fee > balance) return false;
 	string paid;
+	ostringstream fe;
+	fe << std::fixed << setprecision(2) << fee;
 	separateLine(100);
+	cout << "Unpaid fee: " << fee << endl;
+	cout << "Your balance: " << balance << endl;
+	if (fee > balance) return false;
 	cout << "Enter Y to ensure: ";
 	getline(cin, paid);
 	separateLine(100);
@@ -177,7 +183,7 @@ ErrorHandle UI::mainInterface() {
 }
 
 ErrorHandle UI::patientInterface() {
-	separateLine(150);
+	separateLine(200);
 	string index;
 	cout << "1.Hospital List   2.Sort Hospital List   3.Comment List   4.Department Information   5.Add Evaluate   6.Make Appointment   7.Modify Information   8.Charge  9.Pay   10.Quit" << endl;
 	cout << "Enter choice here: ";
@@ -185,7 +191,7 @@ ErrorHandle UI::patientInterface() {
 	if (index != "1" && index != "2" && index != "3" && index != "4" && index != "5"
 		&& index != "6" && index != "7" && index != "8" && index != "9" && index != "10")
 		return ErrorHandle("Invalid choice");
-	separateLine(150);
+	separateLine(200);
 	return ErrorHandle(index);
 }
 
